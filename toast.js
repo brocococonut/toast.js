@@ -5,7 +5,7 @@
  * @param {String}      classes String of classes to apply, for error toasts and whatnot
  * @param {Document}    doc HTML document/fragment/whatever, so long as it's a Document
  */
-export function toast (
+function toast (
   text = '',
   duration = 4500,
   classes = '',
