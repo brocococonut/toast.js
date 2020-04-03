@@ -4,12 +4,14 @@
  * @param {Number}      duration How long to display the toast for (in ms)
  * @param {String}      classes String of classes to apply, for error toasts and whatnot
  * @param {Document}    doc HTML document/fragment/whatever, so long as it's a Document
+ * @param {Boolean}     unsafe Use innerHTML instead of innerText when setting toast contents
  */
 export function toast (
   text = '',
   duration = 4500,
   classes = '',
-  doc = document
+  doc = document,
+  unsafe = false
 ) {
   // Variable setup
   let toastContainer = doc.getElementsByClassName('__s')[0]
@@ -40,7 +42,7 @@ export function toast (
 
   // Create the toast element and set the contents
   const newToast = doc.createElement('span')
-  newToast.innerText = text
+  newToast[unsafe ? 'innerHTML' : 'innerText'] = text
   newToast.setAttribute('class', `__t ${classes}`)
 
   toastContainer.appendChild(newToast)
